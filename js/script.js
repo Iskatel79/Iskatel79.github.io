@@ -18,6 +18,12 @@ function f2(){
      mymax = document.getElementById('B').value =100;
      alert('A и В не должны быть равны');
     }
+    else if((mymin > mymax)){
+     mymin = document.getElementById('A').value =1;
+     mymax = document.getElementById('B').value =100;
+     alert('A не должны быть >B');
+
+    }
     else{
         prNum = Math.floor((Math.random() * mymax) + mymin);
         prCount = Math.round(Math.log(mymax-mymin+1));
@@ -27,6 +33,7 @@ function f2(){
         document.getElementById("mynum").setAttribute('min', mymin);
         document.getElementById("mynum").setAttribute('max', mymax);
     }
+
 }
 function f1(){
     //f2();
