@@ -24,6 +24,8 @@ function f2(){
         count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
         myspan.innerHTML = "от " + mymin + " до "  + mymax;
         range.innerHTML = "Введите число от " + mymin + " до "  + mymax;
+        document.getElementById("mynum").setAttribute('min', mymin);
+        document.getElementById("mynum").setAttribute('max', mymax);
     }
 }
 function f1(){
@@ -82,15 +84,12 @@ function reset(){
 
 function check(e) {
   // Любой ваш код, в том числе сообщение об ошибке
-
-  if (e.value > nvl(max,mymax)) {
+console.log(mymax);
+console.log(max);
+console.log(nvl(max,mymax));
+  if (e.value < nvl(max,mymax) && e.value > nvl(min,mymin)) {
     e.value = '';
-    alert('больше максимума! Максимум: '+nvl(min,mymin));
-  }
-
-  if (e.value > nvl(max,mymax)) {
-    e.value = '';
-    alert('меньше минимума! Минимум: '+nvl(min,mymin));
+    alert('некоректное значение');
   }
 }
 
