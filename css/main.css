@@ -11,9 +11,14 @@ body {
     border-color: #343a40;
     width: 50px;
 }
+.card-header{
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;}
 .container{
-	height:100%;
+	flex: 1 0 auto;
 }
+card-footer{flex: 1 0 auto;}
 .col-sm-3{
 	width: 100%;
 }
