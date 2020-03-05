@@ -2,23 +2,16 @@
   margin: 0;
   padding: 0;
 }
-html,
-body {
-  height: 100%;
-}
+
 .chislo{
 	border-radius: .25rem;
     border-color: #343a40;
     width: 50px;
 }
-.card-header{
-	display: flex;
-	flex-direction: column;
-	min-height: 100%;}
 .container{
 	flex: 1 0 auto;
+	min-height: calc(100vh - 80px);
 }
-card-footer{flex: 1 0 auto;}
 .col-sm-3{
 	width: 100%;
 }
