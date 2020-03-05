@@ -13,11 +13,18 @@ function f2(){
     c=0;
     mymin = document.getElementById('A').value;
     mymax = document.getElementById('B').value; // верхняя граница
-    prNum = Math.floor((Math.random() * mymax) + mymin);
-    prCount = Math.round(Math.log(mymax-mymin+1));
-    count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
-    myspan.innerHTML = "от " + mymin + " до "  + mymax;
-    range.innerHTML = "Введите число от " + mymin + " до "  + mymax;
+    if (mymin == mymax) {
+     mymin = document.getElementById('A').value =1;
+     mymax = document.getElementById('B').value =100;
+     alert('A и В не должны быть равны');
+    }
+    else{
+        prNum = Math.floor((Math.random() * mymax) + mymin);
+        prCount = Math.round(Math.log(mymax-mymin+1));
+        count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
+        myspan.innerHTML = "от " + mymin + " до "  + mymax;
+        range.innerHTML = "Введите число от " + mymin + " до "  + mymax;
+    }
 }
 function f1(){
     //f2();
@@ -71,6 +78,29 @@ function nvl(value1,value2)
 }
 function reset(){
     location.reload();
+}
+
+function check(e) {
+  // Любой ваш код, в том числе сообщение об ошибке
+
+  if (e.value > nvl(max,mymax)) {
+    e.value = '';
+    alert('больше максимума! Максимум: '+nvl(min,mymin));
+  }
+
+  if (e.value > nvl(max,mymax)) {
+    e.value = '';
+    alert('меньше минимума! Минимум: '+nvl(min,mymin));
+  }
+}
+
+function check1(e) {
+  // Любой ваш код, в том числе сообщение об ошибке
+
+  if (e.value <1) {
+    e.value = '';
+    alert('А не должно быть равно или меньше 0!');
+  }
 }
 
 /*function Encrypt(theText) {
