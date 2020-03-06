@@ -2,7 +2,6 @@ var prNum, tempOut, min, max, c;
 var mymin = 1;
 var mymax = 100; // верхняя граница
 prNum = Math.floor((Math.random() * mymax) + mymin);
-console.log(prNum);
 var prCount = Math.round(Math.log(mymax-mymin+1));
 count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
 myspan.innerHTML = "от " + mymin + " до "  + mymax;
@@ -38,8 +37,16 @@ function f2(){
 function f1(){
     //f2();
     var num, out;
-    prCount--;
+    num = document.getElementById('mynum').value;
+
+    var Minnum = document.getElementById('mynum').getAttribute('min');
+
+    var Maxnum = document.getElementById('mynum').getAttribute('max');
+  if (num>=Minnum && num<=Maxnum) {
+     prCount--;
     c++;
+
+    num = document.getElementById('mynum').value;
     if (prCount <1) {
         warning.innerHTML = 'Вы проиграли!';
         document.getElementById("res").style.display = 'block';
@@ -49,8 +56,8 @@ function f1(){
         document.getElementById("dip").setAttribute('disabled', 'disabled');
         document.getElementById("ch").setAttribute('disabled', 'disabled');
     }
+
     else if (prCount > 0) {
-        num = document.getElementById('mynum').value;
         out = document.getElementById('out');
 
         if (num == prNum) {
@@ -77,7 +84,14 @@ function f1(){
     }
     count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
     range.innerHTML = "Введите число от " + nvl(min,mymin) + " до "  + nvl(max,mymax);
+   
 
+    }
+	else{
+	document.getElementById('mynum').value=Minnum;
+        alert('число должно находиться в диапазоне от '+Minnum+ ' до '+Maxnum);
+	}
+	
 }
 function nvl(value1,value2)
 {
@@ -91,13 +105,16 @@ function reset(){
 
 function check(e) {
   // Любой ваш код, в том числе сообщение об ошибке
-console.log(mymax);
-console.log(max);
-console.log(nvl(max,mymax));
-  if (e.value < nvl(max,mymax) && e.value > nvl(min,mymin)) {
-    e.value = '';
-    alert('некоректное значение');
-  }
+  /*var num = document.getElementById('mynum').value;
+
+    var Minnum = document.getElementById('mynum').getAttribute('min');
+
+    var Maxnum = document.getElementById('mynum').getAttribute('max');
+  if (num>=Minnum && num<=Maxnum) {
+        document.getElementById('mynum').value=Minnum;
+        alert('число должно находиться в диапазоне от '+Minnum+ ' до '+Maxnum);
+
+    }*/
 }
 
 function check1(e) {
