@@ -9,8 +9,9 @@
     width: 50px;
 }
 .container{
-	flex: 1 0 auto;
-	min-height: calc(100vh - 80px);
+	/*flex: 1 0 auto;
+	min-height: calc(100vh - 80px);*/
+        padding: 5.5 rem;
 }
 .col-sm-3{
 	width: 100%;
