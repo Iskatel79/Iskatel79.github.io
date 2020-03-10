@@ -6,34 +6,27 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script src="js/script.js" defer></script>
 </head>
 <body>
 	<header>
 		<div class="card-header">
-			<h1><p class="text-center">Игра "Угадай число"</p></h1>
+			<h1 class="text-center">Игра "Угадай число"</h1>
 		</div>
 	</header>
-	<content>
+	<main>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
 					<h2 class="text-center">Игра</h2>
-					<p>Диапазон чисел:</p><br>
-					<p>A: <input oninput="check1(this)" class="chislo" type="number" id="A" value="1" min="1"  ></p>
-					<p>B: <input oninput="check1(this)" class="chislo" type="number" id="B" value="100"  min="1"></p>
-					<button id="dip" class="btn btn-outline-dark" onclick="f2()">Ввести диапазон</button><br><br>
-				    <br>
-					<p>Введите число: <input oninput="check(this)" class="chislo" type="number" id="mynum" min="1" max="100"> </p>
+
+					<p>Введите число: <input  class="chislo" type="number" id="mynum" autofocus> </p>
 					<button id="ch" class="btn btn-outline-dark" onclick="f1()">Угадать</button>
-				    <br>
-				    <br>
+					<button id="res" class="btn btn-outline-dark" onclick="reset()">Заново</button>
+
 				    <p id="count"></p>
 				    <p id="range"></p>
 				    <p id="out" class="text-success"></p>
-				    <p id="win" class="text-success"></p>
 				    <p id="warning" class="text-warning"></p>
-					<button id="res" class="btn btn-outline-dark" onclick="reset()" style="display:none;">Перезагрузить страницу</button>
 				</div>
 				<div class="col-sm-12">
 					<h3 class="text-center">Правила игры</h3>
@@ -43,11 +36,12 @@
 			</div>
 		</div>
 
-	</content>
+	</main>
 	<footer>
 		<div class="card-footer">
 		<p class="text-center">&copy; 2020 Выборнов Алексей</p></div>
 	</footer>
 
+    <script src="js/script.js" defer></script>
 </body>
 </html>
