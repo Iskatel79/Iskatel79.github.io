@@ -6,16 +6,24 @@
 .chislo{
 	border-radius: .25rem;
     border-color: #343a40;
-    width: 50px;
+    width: 150px;
 }
 .container{
 	/*flex: 1 0 auto;
 	min-height: calc(100vh - 80px);*/
-        padding: 5.5 rem;
+	padding:1.75rem;
+	min-height: calc(100vh - 146px);
 }
 .col-sm-3{
 	width: 100%;
 }
+
 .btn-outline-dark{
 	width: 150px;
+}
+.btn{
+	margin-bottom: 5px;
+}
+#out, #warning{
+	height: 3rem;
 }
