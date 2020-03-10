@@ -1,97 +1,100 @@
-var prNum, tempOut, min, max, c;
+var prNum, tempOut, min, max, minx, maxx,c;
 var mymin = 1;
 var mymax = 100; // верхняя граница
-prNum = Math.floor((Math.random() * mymax) + mymin);
-var prCount = Math.round(Math.log(mymax-mymin+1));
+document.getElementById("mynum").setAttribute('min', mymin);
+document.getElementById("mynum").setAttribute('max', mymax);
+prNum = Math.floor((Math.random() * (mymax - mymin)+mymin));
+var prCount = Math.ceil(Math.log2(mymax-mymin+1));
 count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
 myspan.innerHTML = "от " + mymin + " до "  + mymax;
 range.innerHTML = "Введите число от " + mymin + " до "  + mymax;
 c=0;
 
-function f2(){
-    c=0;
-    mymin = document.getElementById('A').value;
-    mymax = document.getElementById('B').value; // верхняя граница
-    if (mymin == mymax) {
-     mymin = document.getElementById('A').value =1;
-     mymax = document.getElementById('B').value =100;
-     alert('A и В не должны быть равны');
-    }
-    else if((mymin > mymax)){
-     mymin = document.getElementById('A').value =1;
-     mymax = document.getElementById('B').value =100;
-     alert('A не должны быть >B');
 
-    }
-    else{
-        prNum = Math.floor((Math.random() * mymax) + mymin);
-        prCount = Math.round(Math.log(mymax-mymin+1));
-        count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
-        myspan.innerHTML = "от " + mymin + " до "  + mymax;
-        range.innerHTML = "Введите число от " + mymin + " до "  + mymax;
-        document.getElementById("mynum").setAttribute('min', mymin);
-        document.getElementById("mynum").setAttribute('max', mymax);
-    }
-
+function reset(){
+    location.reload();
 }
+
 function f1(){
-    //f2();
+    //f2();out.innerHTML = "";
     var num, out;
-    num = document.getElementById('mynum').value;
+    num = Number(document.getElementById('mynum').value);
 
-    var Minnum = document.getElementById('mynum').getAttribute('min');
+    var Minnum = Number(Number(document.getElementById('mynum').getAttribute('min')));
 
-    var Maxnum = document.getElementById('mynum').getAttribute('max');
-  if (num>=Minnum && num<=Maxnum) {
-     prCount--;
-    c++;
+    var Maxnum = Number(Number(document.getElementById('mynum').getAttribute('max')));
+    max=Maxnum;
+    min=Minnum;
 
-    num = document.getElementById('mynum').value;
-    if (prCount <1) {
-        warning.innerHTML = 'Вы проиграли!';
-        document.getElementById("res").style.display = 'block';
-        document.getElementById("A").setAttribute('disabled', 'disabled');
-        document.getElementById("B").setAttribute('disabled', 'disabled');
-        document.getElementById("mynum").setAttribute('disabled', 'disabled');
-        document.getElementById("dip").setAttribute('disabled', 'disabled');
-        document.getElementById("ch").setAttribute('disabled', 'disabled');
-    }
-
-    else if (prCount > 0) {
         out = document.getElementById('out');
 
-        if (num == prNum) {
-            win.innerHTML = 'Вы угадали число. Поздравляю! Вам потребовалось '+c+' попыток. Если хотите повторить перезагрузите страницу.';
 
-        document.getElementById("res").style.display = 'block';
-        document.getElementById("A").setAttribute('disabled', 'disabled');
-        document.getElementById("B").setAttribute('disabled', 'disabled');
-        document.getElementById("mynum").setAttribute('disabled', 'disabled');
-        document.getElementById("dip").setAttribute('disabled', 'disabled');
-        document.getElementById("ch").setAttribute('disabled', 'disabled');
+    if ((num<=Maxnum)&&(num>=Minnum) ) {
+         //prCount--;
+        c++;
+        prCount = Number(prCount)-1;
+        num = document.getElementById('mynum').value;
+        if (prCount < 1 && num != prNum) {
+            document.getElementById("ch").setAttribute("disabled", "disabled");
+            document.getElementById("mynum").setAttribute("disabled", "disabled");
+            count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
+            warning.innerHTML = "Вы проиграли! Загаданное число "+prNum+"!";
+            if (num > prNum){
+                out.innerHTML = 'Вы ввели число больше чем нужно';
+            }
+            else{out.innerHTML = 'Вы ввели число меньше чем нужно';}
         }
-        else if (num > prNum){
-            out.innerHTML = 'Вы ввели число больше чем нужно';
-            max = num;
-        }
-        else {
-            out.innerHTML = 'Вы ввели число меньше чем нужно';
-            min = num;
-        }
+        else{
+            if (num == prNum) {
+                out.innerHTML = 'Вы угадали число. Поздравляю! Вам потребовалось '+c+' попыток. Если хотите повторить перезагрузите страницу. Ответ '+prNum;
 
-        document.getElementById("mynum").setAttribute('min', min);
-        document.getElementById("mynum").setAttribute('max', max);
-    }
-    count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
-    range.innerHTML = "Введите число от " + nvl(min,mymin) + " до "  + nvl(max,mymax);
-   
+            	document.getElementById("ch").setAttribute("disabled", "disabled");
+            	document.getElementById("mynum").setAttribute("disabled", "disabled");
+        		count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
+            }
+            else if (num > prNum){
+                out.innerHTML = 'Вы ввели число больше чем нужно';
+                max = num;
+                maxx=max;
+        		if (max != null) {maxx = Number(maxx)-1;}
+                range.innerHTML = "Введите число от " + nvl(minx,mymin) + " до "  + nvl(maxx,mymax);
+                count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
+            }
+            else if(num<prNum){
+                out.innerHTML = 'Вы ввели число меньше чем нужно';
+                min = num;
+                minx=min;
+
+        		if (minx != null) {minx = Number(minx)+1;}
+                range.innerHTML = "Введите число от " + nvl(minx,mymin) + " до "  + nvl(maxx,mymax);
+                count.innerHTML = "Колличество попыток оставшихся попыток: "+prCount;
+            }
+
+            document.getElementById("mynum").setAttribute('min', nvl(minx,min));
+            document.getElementById("mynum").setAttribute('max', nvl(maxx,max));
+            document.getElementById("mynum").value="";
+        }
 
     }
 	else{
-	document.getElementById('mynum').value=Minnum;
-        alert('число должно находиться в диапазоне от '+Minnum+ ' до '+Maxnum);
+        out.innerHTML ='число должно находиться в диапазоне от '+nvl(minx,mymin)+ ' до '+nvl(maxx,mymax);
+
 	}
-	
+}
+(function() {
+  document.querySelector('input').addEventListener('keydown', function(e) {
+ if (e.keyCode === 13) {
+ // можете делать все что угодно со значением текстового поля
+    f1();
+ }
+  });
+})();
+function f3(e) {
+	// body...
+	e=e||window.event;
+	var key = e.which||e.keyCode;
+	if (key===13) {tryRoQuessNumber();}
+
 }
 function nvl(value1,value2)
 {
@@ -99,59 +102,3 @@ function nvl(value1,value2)
         return value2;
     return value1;
 }
-function reset(){
-    location.reload();
-}
-
-function check(e) {
-  // Любой ваш код, в том числе сообщение об ошибке
-  /*var num = document.getElementById('mynum').value;
-
-    var Minnum = document.getElementById('mynum').getAttribute('min');
-
-    var Maxnum = document.getElementById('mynum').getAttribute('max');
-  if (num>=Minnum && num<=Maxnum) {
-        document.getElementById('mynum').value=Minnum;
-        alert('число должно находиться в диапазоне от '+Minnum+ ' до '+Maxnum);
-
-    }*/
-}
-
-function check1(e) {
-  // Любой ваш код, в том числе сообщение об ошибке
-
-  if (e.value <1) {
-    e.value = '';
-    alert('А не должно быть равно или меньше 0!');
-  }
-}
-
-/*function Encrypt(theText) {
-    output = new String;
-    Temp = new Array();
-    Temp2 = new Array();
-    TextSize = theText.length;
-    for (i = 0; i < TextSize; i++) {
-        rnd = Math.round(Math.random() * 122) + 68;
-        Temp[i] = theText.charCodeAt(i) + rnd;
-        Temp2[i] = rnd;
-    }
-    for (i = 0; i < TextSize; i++) {
-        output += String.fromCharCode(Temp[i], Temp2[i]);
-    }
-    return output;
-}
-function unEncrypt(theText) {
-    output = new String;
-    Temp = new Array();
-    Temp2 = new Array();
-    TextSize = theText.length;
-    for (i = 0; i < TextSize; i++) {
-        Temp[i] = theText.charCodeAt(i);
-        Temp2[i] = theText.charCodeAt(i + 1);
-    }
-    for (i = 0; i < TextSize; i = i+2) {
-        output += String.fromCharCode(Temp[i] - Temp2[i]);
-    }
-    return output;
-}*/
